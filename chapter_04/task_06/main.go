@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 // Упражнение по программированию 4.6
 //
 // Напишите программу, которая запрашивает имя пользователя и его фамилию. Сделайте так, чтобы она выводил
@@ -12,5 +14,14 @@ package main
 // <pre>Иван Петров</pre>
 // <pre>4    6</pre>
 func main() {
+	var first_name string
+	var second_name string
 
+	fmt.Print("Введите имя и фамилию: ")
+	fmt.Scan(&first_name, &second_name)
+	fmt.Printf("%s %s\n", first_name, second_name)
+	fmt.Printf("%*d %*d\n", len(first_name), len(first_name), len(second_name), len(second_name))
+	fmt.Println()
+	fmt.Printf("%s %s\n", first_name, second_name)
+	fmt.Printf("%-*d %-*d\n", len(first_name), len(first_name), len(second_name), len(second_name))
 }
