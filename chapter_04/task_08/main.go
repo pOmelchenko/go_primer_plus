@@ -1,5 +1,13 @@
 package main
 
+import "fmt"
+
+// Количество литров в 1 галоне
+const LITER_PER_GALLON float32 = 3.785
+
+// Количество километров в 1 миле
+const KILOMETER_PER_MILE float32 = 1.609
+
 // Упражнение по программированию 4.8
 //
 // Напишите программу, которая предлагает пользователю ввести количество преодоленных миль и количество
@@ -12,5 +20,15 @@ package main
 // Применяйте для этих двух коэффициентов преобразования символические константы (определенные с помощью
 // <code>const</code> или <code>#define</code>).
 func main() {
+	var miles float32
+	var gallons float32
 
+	fmt.Print("Введите расстояние которое вы проехали: ")
+	fmt.Scan(&miles)
+	fmt.Print("Введите количество потраченного топлива в галонах: ")
+	fmt.Scan(&gallons)
+
+	fmt.Printf("Ваш расход миль на галон: %.1f\n", miles/gallons)
+
+	fmt.Printf("Ваш расход литров на 100 км: %.1f\n", (gallons*LITER_PER_GALLON*100)/(miles*KILOMETER_PER_MILE))
 }
