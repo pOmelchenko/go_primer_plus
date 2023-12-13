@@ -23,7 +23,7 @@ func main() {
 	)
 
 	fmt.Printf("Ведите значение для [%d] элемента массива: ", element_index)
-	_, err := fmt.Scanf("%lf", array_input[element_index])
+	_, err := fmt.Scan(&array_input[element_index])
 
 	if err != nil {
 		fmt.Println("Введено что-то не правильное")
@@ -35,7 +35,7 @@ func main() {
 
 	for element_index < ARRAY_LIMIT {
 		fmt.Printf("Ведите значение для [%d] элемента массива: ", element_index)
-		_, err := fmt.Scanf("%lf", &array_input[element_index])
+		_, err := fmt.Scan(&array_input[element_index])
 
 		if err != nil {
 			fmt.Println("Введено что-то не правильное")
@@ -47,12 +47,12 @@ func main() {
 	}
 
 	for element_index = 0; element_index < ARRAY_LIMIT; element_index++ {
-		fmt.Printf("%12lf", array_input[element_index])
+		fmt.Printf("%12f", array_input[element_index])
 	}
 	fmt.Println()
 
 	for element_index = 0; element_index < ARRAY_LIMIT; element_index++ {
-		fmt.Printf("%12lf", array_sum[element_index])
+		fmt.Printf("%12f", array_sum[element_index])
 	}
 	fmt.Println()
 }
