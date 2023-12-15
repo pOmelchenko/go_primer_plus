@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-const LIMIT = 256
+const LIMIT = 10
 
 // Упражнение по программированию 6.15
 //
@@ -12,19 +12,20 @@ const LIMIT = 256
 // <code>%c</code>, а при нажатии клавиши <code><Enter></code> генерируется символ новой строки (<code>\\n</code>).
 func main() {
 	var (
-		chars [LIMIT]rune
+		chars [LIMIT]byte
 		index int
 	)
 
-	_, err := fmt.Scan(&chars[0])
+	_, err := fmt.Scanf("%c", &chars[0])
 	if err != nil {
 		fmt.Print("Что-то не то, не символ")
 	}
 
 	for index = 1; index < LIMIT; index++ {
-		_, err := fmt.Scan(&chars[index])
+		_, err := fmt.Scanf("%c", &chars[index])
 		if err != nil {
 			fmt.Print("Что-то не то, не символ")
+			break
 		}
 	}
 
