@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-const LIMIT = 255
+const LIMIT = 256
 
 // Упражнение по программированию 6.15
 //
