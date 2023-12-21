@@ -36,12 +36,18 @@ func main() {
 			continue
 		}
 
-		if counter%8 == 0 {
+		if counter%8 != 0 {
 			beakline = ' '
 		} else {
 			beakline = '\n'
 		}
 
 		fmt.Printf("%c-%d%c", symbol, symbol, beakline)
+
+		symbol, _, err = reader.ReadRune()
+		if err != nil {
+			log.Println("stdin:", err)
+			return
+		}
 	}
 }
