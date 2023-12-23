@@ -41,6 +41,12 @@ func main() {
 		} else {
 			odd++
 		}
+
+		symbol, _, err = reader.ReadRune()
+		if err != nil {
+			log.Println("stdin:", err)
+			return
+		}
 	}
 
 	fmt.Printf("Введено %d чисел, среднее число %d, четных %d, нечетных %d", counter, sum/counter, even, odd)
