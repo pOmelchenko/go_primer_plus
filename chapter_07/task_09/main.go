@@ -15,7 +15,12 @@ func main() {
 
 	fmt.Print("Введите число: ")
 
-	for _, err := fmt.Scan(&num); err == nil; _, err = fmt.Scan(&num) {
+	for {
+		if _, err := fmt.Scan(&num); err != nil {
+			fmt.Println("До свидания")
+			return
+		}
+
 		count := 0
 		for prime = 2; prime <= num; prime++ {
 			isPrime := true
@@ -39,6 +44,4 @@ func main() {
 		fmt.Println()
 		fmt.Println("Введите следующее число для анализа, или введите q для завершения.")
 	}
-
-	fmt.Println("До свидания")
 }
