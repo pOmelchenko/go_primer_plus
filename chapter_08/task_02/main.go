@@ -3,6 +3,8 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
+	"os"
 )
 
 // Упражнение по программированию 8.2
@@ -20,13 +22,89 @@ import (
 // их попадания в программу.
 func main() {
 	var (
-		ch    rune
-		count int = 1
+		count = 1
 	)
 
-	scanner := bufio.Scanner()
+	scanner := bufio.NewReader(os.Stdin)
+
 	for {
-		fmt.Printf(" - %d ", ch)
+		input, err := scanner.ReadByte()
+		if err == io.EOF {
+			break
+		}
+
+		switch input {
+		case 0:
+			fmt.Print("^@")
+		case 1:
+			fmt.Print("^A")
+		case 2:
+			fmt.Print("^B")
+		case 3:
+			fmt.Print("^C")
+		//case 4: // EOF
+		//	return
+		case 5:
+			fmt.Print("^E")
+		case 6:
+			fmt.Print("^F")
+		case 7:
+			fmt.Print("^G")
+		case 8:
+			fmt.Print("^H")
+		case 9:
+			fmt.Print("^I")
+		case 10:
+			fmt.Print("^J")
+		case 11:
+			fmt.Print("^K")
+		case 12:
+			fmt.Print("^L")
+		case 13:
+			fmt.Print("^M")
+		case 14:
+			fmt.Print("^N")
+		case 15:
+			fmt.Print("^O")
+		case 16:
+			fmt.Print("^P")
+		case 17:
+			fmt.Print("^Q")
+		case 18:
+			fmt.Print("^R")
+		case 19:
+			fmt.Print("^S")
+		case 20:
+			fmt.Print("^T")
+		case 21:
+			fmt.Print("^U")
+		case 22:
+			fmt.Print("^V")
+		case 23:
+			fmt.Print("^W")
+		case 24:
+			fmt.Print("^X")
+		case 25:
+			fmt.Print("^Y")
+		case 26:
+			fmt.Print("^Z")
+		case 27:
+			fmt.Print("^[")
+		case 28:
+			fmt.Print("^\\")
+		case 29:
+			fmt.Print("^]")
+		case 30:
+			fmt.Print("^^")
+		case 31:
+			fmt.Print("^_")
+		case 32:
+			fmt.Print(" ")
+		default:
+			fmt.Print(string(input))
+		}
+
+		fmt.Printf(" - %d ", input)
 
 		if count%10 == 0 {
 			fmt.Println()
@@ -34,4 +112,6 @@ func main() {
 
 		count++
 	}
+
+	fmt.Println()
 }
