@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"io"
 	"os"
 )
 
@@ -17,9 +16,10 @@ import (
 // программа быстро найдет правильный ответ, во всяком случае, если пользователь не будет обманывать.
 func main() {
 	var (
-		min   = 1
-		max   = 100
-		guess = 50
+		lower   = 1
+		greater = 100
+		guess   = 50
+		choice  byte
 	)
 
 	fmt.Println("Выберите целое число в интервале от 1 до 100. Я попробую угадать его.")
@@ -30,21 +30,22 @@ func main() {
 	scanner := bufio.NewReader(os.Stdin)
 
 	for {
-		choice, err := scanner.ReadByte()
-		if err == io.EOF {
+		choice, _ = scanner.ReadByte()
+		if rune(choice) == 'y' {
 			break
 		}
 
 		if rune(choice) == 'l' {
-			max = guess
+			greater = guess
 		}
 		if rune(choice) == 'g' {
-			min = guess
+			lower = guess
 		}
 
-		guess = (min + max) / 2
+		guess = (lower + greater) / 2
 
 		fmt.Printf("Ладно, тогда это %d?\n", guess)
+		choice, _ = scanner.ReadByte()
 	}
 
 	fmt.Println("Я знал, что у меня получится!")
