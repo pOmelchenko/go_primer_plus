@@ -12,24 +12,22 @@ import (
 // непробельный символ. Протестируйте ее в какой-нибудь простой программе.
 func main() {
 	var ch rune
-	ch = get_first()
+	ch = getFirst()
 
 	fmt.Printf("Результат: %c\n", ch)
 	fmt.Println("Программа завершена.")
 }
 
-func get_first() rune {
+func getFirst() rune {
 	scanner := bufio.NewReader(os.Stdin)
+
 	for {
-		choice, _ := scanner.ReadByte()
-		if rune(choice) == ' ' {
+		choice, _, _ := scanner.ReadRune()
+
+		if choice == ' ' || choice == '\n' {
 			continue
 		}
 
-		if rune(choice) != '\n' {
-			continue
-		}
-
-		return rune(choice)
+		return choice
 	}
 }
