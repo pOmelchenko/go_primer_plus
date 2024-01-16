@@ -37,6 +37,7 @@ func main() {
 			normalWorkTime = 11.20
 		default:
 			fmt.Println("Попробуйте еще раз")
+			continue
 		}
 
 		fmt.Print("Введите количество отработанных часов: ")
@@ -82,7 +83,7 @@ func getChoice() rune {
 	ch := getFirst()
 
 	for {
-		if ch != 'a' || ch != 'b' && ch != 'c' && ch != 'd' && ch != 'q' {
+		if ch != 'a' && ch != 'b' && ch != 'c' && ch != 'd' && ch != 'q' {
 			fmt.Println("Выберите a, b, c, d или q.")
 			ch = getFirst()
 		} else {
@@ -108,14 +109,18 @@ func getFirst() rune {
 func getInt() int {
 	var (
 		input int
-		//ch    rune
+		err   error
 	)
 
 	for {
-		_, err := fmt.Scanf("%d", &input)
+		_, err = fmt.Scanf("%d", &input)
 		if err != nil {
 			fmt.Println(" не является целочисленным.")
 			fmt.Print("Введите целое число, такое как 25, -178 или 3: ")
+			_, err = fmt.Scanf("%d", &input)
+			continue
 		}
+
+		return input
 	}
 }
