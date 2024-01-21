@@ -1,5 +1,11 @@
 package main
 
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
+
 // Упражнение по программированию 8.8
 //
 // Напишите программу, которая выводит на экран меню, предлагающее выбрать сложение, вычитание, умножение или
@@ -34,5 +40,83 @@ package main
 // Программа завершена.<br>
 // </pre>
 func main() {
+	choice := getChoice()
 
+	for choice != 'q' {
+		fmt.Print("Введите первое число: ")
+		numA := getNumber()
+
+		fmt.Print("Введите второе число: ")
+		numB := getNumber()
+
+		switch choice {
+		case 'a':
+			fmt.Printf("%0.1f + %0.1f = %0.1f\n", numA, numB, numA+numB)
+		case 's':
+			fmt.Printf("%0.1f - %0.1f = %0.1f\n", numA, numB, numA-numB)
+		case 'm':
+			fmt.Printf("%0.1f * %0.1f = %0.1f\n", numA, numB, numA*numB)
+		case 'd':
+			if 0 == numB {
+				fmt.Print("Введите число отличное от 0: ")
+				numB = getNumber()
+			}
+			fmt.Printf("%0.1f / %0.1f = %0.1f\n", numA, numB, numA/numB)
+		default:
+			choice = getChoice()
+		}
+	}
+
+	fmt.Println("Программа завершена.")
+}
+
+func getChoice() rune {
+	fmt.Println("Выберите операцию из списка:")
+	fmt.Println("a. сложение            s. вычитание")
+	fmt.Println("m. умножение           d. деление")
+	fmt.Println("q. завершение")
+
+	choice := getFirst()
+
+	for {
+		if choice != 'a' && choice != 's' && choice != 'm' && choice != 'd' && choice != 'q' {
+			fmt.Println("Выбран неверный вариант, попробуйте еще раз")
+			choice = getFirst()
+		} else {
+			return choice
+		}
+	}
+
+}
+
+func getFirst() rune {
+	scanner := bufio.NewReader(os.Stdin)
+
+	for {
+		choice, _, _ := scanner.ReadRune()
+
+		if choice == ' ' || choice == '\n' {
+			continue
+		}
+
+		return choice
+	}
+}
+
+func getNumber() float32 {
+	var (
+		number float32
+		err    error
+	)
+
+	for {
+		_, err = fmt.Scanf("%f", &number)
+		if err != nil {
+			fmt.Print("Введите число, такое как 2.5, -1.78E8, или 3: ")
+			_, err = fmt.Scanf("%d", &number)
+			continue
+		}
+
+		return number
+	}
 }
