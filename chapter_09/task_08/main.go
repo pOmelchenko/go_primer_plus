@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 // Упражнение по программированию 9.8
 //
@@ -14,20 +17,28 @@ func main() {
 	var (
 		x, xpow float32
 		exp     int
+		err     error
 	)
 
 	fmt.Println("Введите число и целую степень, в которую число будет возведено.")
 	fmt.Println("Для завершения программы введите q")
 
+	_, err = fmt.Scanf("%f%d", &x, &exp)
+
+	if err != nil {
+		os.Exit(0)
+	}
+
 	for {
-		_, err := fmt.Scanf("%lf%d", &x, &exp)
-		if err != nil {
-			return
-		}
 
 		xpow = power(x, exp)
 		fmt.Printf("%.3g в степени %d равно %.5g\n", x, exp, xpow)
 		fmt.Println("Введите следующую пару чисел или q для завершения.")
+
+		_, err = fmt.Scanf("%f%d", &x, &exp)
+		if err != nil {
+			break
+		}
 	}
 	fmt.Println("Надеемся, что вы оценили это упражнение -- до свиданья!")
 }
